@@ -76,72 +76,77 @@ function FarmerPage() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-96 bg-white p-4 rounded shadow-lg">
-        <h1 className="text-2xl mb-4">Create Farmer</h1>
+    <div className='relative w-full h-full flex flex-row items-start space-x-4 justify-start'>
+    <div className='absolute top-2 left-5 text-3xl text-gray-300 font-semibold'>
+     Add Farmer
+   </div>
 
-        <form onSubmit={handleFormSubmit}>
+        <form className="max-w-sm w-full mt-20" onSubmit={handleFormSubmit}>
           <div className="mb-4">
-            <label
+            {/* <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="username"
             >
               Username
-            </label>
+            </label> */}
             <input
-              className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+               className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               type="text"
               name="username"
               id="username"
+              placeholder="add username"
               value={formData.username}
               onChange={handleInputChange}
             />
           </div>
 
           <div className="mb-4">
-            <label
+            {/* <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="bio"
             >
               Bio
-            </label>
+            </label> */}
             <textarea
-              className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               name="bio"
               id="bio"
+              placeholder="add bio"
               value={formData.bio}
               onChange={handleInputChange}
             />
           </div>
 
           <div className="mb-4">
-            <label
+            {/* <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="location"
             >
               Location
-            </label>
+            </label> */}
             <input
-              className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               type="text"
               name="location"
               id="location"
+              placeholder="add farmer location"
               value={formData.location}
               onChange={handleInputChange}
             />
           </div>
 
           <div className="mb-4">
-            <label
+            {/* <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="gps"
             >
               GPS
-            </label>
+            </label> */}
             <input
-              className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               type="text"
               name="gps"
+              placeholder="add farmer gps"
               id="gps"
               value={formData.gps}
               onChange={handleInputChange}
@@ -149,41 +154,43 @@ function FarmerPage() {
           </div>
 
           <div className="mb-4">
-            <label
+            {/* <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="phoneNumber"
             >
               Phone Number
-            </label>
+            </label> */}
             <input
-              className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+             className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               type="text"
               name="phoneNumber"
               id="phoneNumber"
+              placeholder="add phone number"
               value={formData.phoneNumber}
               onChange={handleInputChange}
             />
           </div>
 
           <div className="mb-4">
-            <label
+            {/* <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="email"
             >
               Email
-            </label>
+            </label> */}
             <input
-              className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+               className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               type="text"
               name="email"
               id="email"
+              placeholder="add farmer email"
               value={formData.email}
               onChange={handleInputChange}
             />
           </div>
 
           {/* Add other form fields here as needed */}
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
               Image
             </label>
@@ -195,11 +202,11 @@ function FarmerPage() {
               accept="image/*" // Restrict to image files
               onChange={handleInputChange}
             />
-          </div>
+          </div> */}
 
           <div className="mt-4">
             <button
-              className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Create
@@ -207,7 +214,6 @@ function FarmerPage() {
           </div>
         </form>
       </div>
-    </div>
   );
 }
 

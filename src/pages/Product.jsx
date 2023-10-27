@@ -92,16 +92,19 @@ function ProductPage() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-96 bg-white p-4 rounded">
-        <h1 className="text-2xl mb-4">Create Product</h1>
-        <form onSubmit={handleFormSubmit}>
+    <div className='relative w-full h-full flex flex-row flex-wrap items-center space-x-4 justify-start'>
+       <div className='absolute top-2 left-5 text-3xl text-gray-300 font-semibold'>
+        Add Product
+      </div>
+
+        <form  className="max-w-lg w-full"  onSubmit={handleFormSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+            {/* <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
               Name
-            </label>
+            </label> */}
             <input
-              className="w-full border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              placeholder='product name'
+              className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               type="text"
               name="name"
               id="name"
@@ -111,24 +114,25 @@ function ProductPage() {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
+            {/* <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
               Description
-            </label>
+            </label> */}
             <textarea
-              className="w-full border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               name="description"
               id="description"
+              placeholder='add product description'
               value={formData.description}
               onChange={handleInputChange}
             />
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="quantity">
-              Quantity
+            <label className="text-gray-500 text-sm font-semibold mb-2" htmlFor="quantity">
+              Product quantity
             </label>
             <input
-              className="w-full border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+             className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               type="number"
               name="quantity"
               id="quantity"
@@ -138,13 +142,14 @@ function ProductPage() {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="location">
+            {/* <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="location">
               Location
-            </label>
+            </label> */}
             <input
-              className="w-full border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+               className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               type="text"
               name="location"
+              placeholder='add location'
               id="location"
               value={formData.location}
               onChange={handleInputChange}
@@ -152,11 +157,11 @@ function ProductPage() {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
-              Price
+          <label className="text-gray-500 text-sm font-semibold mb-2" htmlFor="quantity">
+              Product price
             </label>
             <input
-              className="w-full border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               type="number"
               name="price"
               id="price"
@@ -166,11 +171,11 @@ function ProductPage() {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="farmerId">
+          <label className="text-gray-500 text-sm font-semibold mb-2" htmlFor="quantity">
               Select Farmer
             </label>
             <select
-              className="w-full border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+               className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               name="farmerId"
               id="farmerId"
               value={formData.farmerId}
@@ -186,11 +191,11 @@ function ProductPage() {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="typeId">
-              Select Type
+          <label className="text-gray-500 text-sm font-semibold mb-2" htmlFor="quantity">
+              Select Product Type
             </label>
             <select
-              className="w-full"
+              className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               name="typeId"
               id="typeId"
               value={formData.typeId}
@@ -222,7 +227,7 @@ function ProductPage() {
 
           <div className="mt-4">
             <button
-              className="w-full bg-blue-500 hover-bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="w-full bg-green-500 hover-bg-green-700 text-white font-bold py-2 px-4 rounded"
               type="submit"
             >
               Create
@@ -230,7 +235,6 @@ function ProductPage() {
           </div>
         </form>
       </div>
-    </div>
   );
 }
 

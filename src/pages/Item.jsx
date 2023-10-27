@@ -3,14 +3,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import CategoryHeader from "./Categories/CategoryHeader";
 import ProductLayout from "./Categories/ProductLayout";
-import backkey from '../assets/backkey.png'
+import backkey from "../assets/backkey.png";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const { typeId, farmerId, id } = useParams();
   const [tab, setTab] = useState("description");
   const [product, setProduct] = useState({});
   const [farmerDetails, setFarmerDetails] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
@@ -38,62 +39,80 @@ const ProductDetails = () => {
 
   return (
     <>
-    <div className="bg-gray-100">
-      <Header page={"farmshop"} />
-      {/* <CategoryHeader page={""} id={null} /> */}
-      <div className="container mx-auto p-4">
-        <div className="text-xs tracking-tight flex flex-row items-center text-gray-400 mb-4 space-x-4">
-          <span
-          onClick={() => navigate(-1)}
-          className="w-10 rounded-full border border-gray-300 p-2 mr-2 cursor-pointer hover:border-orange-100">
-            <img src={backkey} className="w-full h-full" />
-          </span>
-          {`product/${product.name}`}
-        </div>
-
-        <div className="flex flex-row items-center space-x-8 flex-wrap justify-center">
-          <div className="bg-orange-100 w-full max-w-xl rounded-xl">
-              <img src={product.image} alt="pr-name" className="w-full"/>
+      <div className="bg-gray-100">
+        <Header page={"farmshop"} />
+        {/* <CategoryHeader page={""} id={null} /> */}
+        <div className="container mx-auto p-4">
+          <div className="text-xs tracking-tight flex flex-row items-center text-gray-400 mb-4 space-x-4">
+            <span
+              onClick={() => navigate(-1)}
+              className="w-10 rounded-full border border-gray-300 p-2 mr-2 cursor-pointer hover:border-orange-100"
+            >
+              <img src={backkey} className="w-full h-full" />
+            </span>
+            {`product/${product.name}`}
           </div>
 
-          <div className="p-8 flex-1 space-y-4">
-            <div className="text-5xl tracking-tight font-semibold">{product.name}</div>
-            <div className="text-3xl tracking-tight text-gray-400">${product.price}</div>
-
-            <div className="tracking-wide h-full p-2">
-              {product.description}
+          <div className="flex flex-row items-center space-x-8 flex-wrap justify-center">
+            <div className="bg-orange-100 w-full max-w-xl rounded-xl">
+              <img src={product.image} alt="pr-name" className="w-full" />
             </div>
 
+            <div className="p-8 flex-1 space-y-4">
+              <div className="text-5xl tracking-tight font-semibold">
+                {product.name}
+              </div>
+              <div className="text-3xl tracking-tight text-gray-400">
+                ${product.price}
+              </div>
 
-            <div className="bg-white rounded-md max-w-sm w-full space-y-4 shadow-sm p-4 flex flex-col ">
-              <div className="flex flex-row items-center space-x-6">
-              <div className="rounded-full p-8 bg-gray-100"> </div>
+              <div className="tracking-wide h-full p-2">
+                {product.description}
+              </div>
+
               <div>
-                <div className="font-bold tracking-tight">{farmerDetails?.username}</div>
-                <div className="text-gray-400 text-xs font-semibold">{farmerDetails?.location}</div>
-              </div>
-              
-
-              </div>
-
-              <div className="flex flex-row items-center gap-2 justify-center">
-                <a href={farmerDetails?.gps} className="flex-1 font-medium bg-green-400 cursor-pointer text-white hover:bg-green-300 text-center p-2 rounded-lg">
-                  find me
-                </a>
-                <a
-                href="#"
-                className="flex-1 font-semibold cursor-pointer bg-gray-200 text-white hover:bg-gray-300 text-center p-2 rounded-lg">
-                  Contact me
-                </a>
-                
+                <button
+                onClick={(e) => {
+                  e.preventDefault()
+                  const getCart = JSON.parse(localStorage.getItem('FARM_CART')) || []
+                  localStorage.setItem('FARM_CART', JSON.stringify([...getCart, product]))
+                  toast.success("successfully added to cart")
+                }}
+                className="p-2 text-white font-semibold hover:bg-green-400 max-w-sm w-full bg-green-500 rounded-lg">add to cart</button>
               </div>
 
+              <div className="bg-white rounded-md max-w-sm w-full space-y-4 shadow-sm p-4 flex flex-col ">
+                <div className="flex flex-row items-center space-x-6">
+                  <div className="rounded-full p-8 bg-gray-100"> </div>
+                  <div>
+                    <div className="font-bold tracking-tight">
+                      {farmerDetails?.username}
+                    </div>
+                    <div className="text-gray-400 text-xs font-semibold">
+                      {farmerDetails?.location}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-row items-center gap-2 justify-center">
+                  <a
+                    href={farmerDetails?.gps}
+                    className="flex-1 font-medium bg-green-400 cursor-pointer text-white hover:bg-green-300 text-center p-2 rounded-lg"
+                  >
+                    find me
+                  </a>
+                  <a
+                    href="#"
+                    className="flex-1 font-semibold cursor-pointer bg-gray-200 text-white hover:bg-gray-300 text-center p-2 rounded-lg"
+                  >
+                    Contact me
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
-        </div>
-
-        {/* <div className="flex p-2 border-2 items-center border-gray-200">
+          {/* <div className="flex p-2 border-2 items-center border-gray-200">
           <div className="w-72">
             <img src={product.image} alt={product.name} className="w-full" />
           </div>
@@ -114,7 +133,7 @@ const ProductDetails = () => {
           </div>
         </div> */}
 
-        {/* <div className="mt-4">
+          {/* <div className="mt-4">
           <div className="flex">
             <button
               className={`py-2 px-4 mr-2 ${
@@ -154,10 +173,12 @@ const ProductDetails = () => {
           )}
         </div> */}
 
-        <div className="mt-20">
-          <h2 className="text-2xl font-bold tracking-tight text-center">Related Products</h2>
-          <ProductLayout products={relatedProducts}/>
-          {/* <div className="flex flex-wrap">
+          <div className="mt-20">
+            <h2 className="text-2xl font-bold tracking-tight text-center">
+              Related Products
+            </h2>
+            <ProductLayout products={relatedProducts} />
+            {/* <div className="flex flex-wrap">
             {relatedProducts.map((relatedProduct) => (
               <div key={relatedProduct.id} className="w-1/4 p-4">
                 <img
@@ -175,8 +196,8 @@ const ProductDetails = () => {
               </div>
             ))}
           </div> */}
+          </div>
         </div>
-      </div>
       </div>
     </>
   );

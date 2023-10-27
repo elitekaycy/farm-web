@@ -12,7 +12,7 @@ function ProductComponent({ product }) {
     className="w-60 h-80 flex-col items-center flex justify-between bg-white rounded-xl hover:scale-105 transition ease-in-out duration-200 transform scale-100 cursor-pointer">
       <div className="flex-1">
         <div className="w-60 bg-orange-50 rounded-t-xl h-48 flex items-center justify-center">
-        <img alt="service1" src={image} className="w-40" />
+        <img alt="service1" src={image} className="w-full" />
         </div>
 
         <div className="p-3 space-y-1">

@@ -34,16 +34,18 @@ function TypePage() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-96 bg-white p-4 rounded">
-        <h1 className="text-2xl mb-4">Create Type</h1>
-        <form onSubmit={handleFormSubmit}>
+    <div className='relative w-full h-full flex flex-row items-start space-x-4 justify-start'>
+       <div className='absolute top-2 left-5 text-3xl text-gray-300 font-semibold'>
+        Add Product Type
+      </div>
+
+        <form  className="max-w-sm w-full mt-20"  onSubmit={handleFormSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="typeName">
+            {/* <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="typeName">
               Type Name
-            </label>
+            </label> */}
             <input
-              className="w-full focus:outline-none"
+              className="w-full border p-2 rounded-md appearance-none focus:outline-green-400"
               type="text"
               name="typeName"
               id="typeName"
@@ -55,7 +57,7 @@ function TypePage() {
 
           <div className="mt-4">
             <button
-              className="w-full bg-blue-500 hover-bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="w-full bg-green-500 hover-bg-green-700 text-white font-bold py-2 px-4 rounded"
               type="submit"
             >
               Create
@@ -63,7 +65,6 @@ function TypePage() {
           </div>
         </form>
       </div>
-    </div>
   );
 }
 
