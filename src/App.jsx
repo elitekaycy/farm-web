@@ -6,6 +6,7 @@ import Signup from './pages/auth/Signup'
 import Login from './pages/auth/Login'
 import Admin from './pages/admin/Admin'
 import Cart from './pages/Cart'
+import AdminLogin from './pages/admin/AdminLogin'
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<HomePage />} exact />
+        <Route path="/login/admin" element={<AdminLogin />} exact />
         <Route path="/signup" element={<ProtectedRoute><Signup /></ProtectedRoute>} />
         <Route path="/login" element={<ProtectedRoute><Login /></ProtectedRoute>} />
         <Route path="/product/:typeId/:farmerId/:id" element={<ProductDetails />} />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import AdminUsers from './AdminUsers'
 import AdminHome from './AdminHome'
@@ -11,6 +11,12 @@ import CompletOrders from '../CompleteOrders'
 function Admin() {
   const [activeNav, setActiveNav] = useState("Users")
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const getAdminUser = localStorage.getItem('FARM_ADMIN')
+    if(getAdminUser === 'false' || !getAdminUser) navigate('/login/admin')
+
+  }, [])
 
   const ordersNreports =  [
     {
@@ -53,8 +59,9 @@ function Admin() {
 
   return (
     <div className='w-screen h-full min-h-screen flex flex-row bg-gray-100'>
-      <div className='h-full min-h-screen max-w-xs w-full bg-green-600 p-4'>
+      <div className='h-full min-h-screen flex flex-col justify-between max-w-xs w-full bg-green-600 p-4'>
 
+        <div>
         <div className='text-white font-bold text-lg text-center tracking-tight p-4'>
           Admin Panel
         </div>
@@ -86,7 +93,15 @@ function Admin() {
             </button>
           ))}
         </div>
+        </div>
 
+       <button 
+       onClick={() => {
+        localStorage.removeItem('FARM_ADMIN')
+        navigate('/login/admin')}}
+       className='text-center text-white p-2 hover:bg-white hover:text-black px-3 bg-green-500 rounded-lg'>
+        logout
+       </button>
       </div>
 
       <div className='w-full flex flex-1 p-4'>
