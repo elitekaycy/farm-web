@@ -22,7 +22,7 @@ function CompleteOrders() {
     </div>
 
     <div className='mt-20 space-y-2'>
-        {orders.filter(ord => ord.status === "pending").map(ord => (
+        {orders.filter(ord => ord.status === "complete").map(ord => (
             <div key={ord.id} className='space-x-2 flex flex-row items-center'>
                 <div className='bg-green-600 text-white p-4 w-full rounded-md' key={ord.id}>
                     <span className='text-xs font-bold'>ordNo: {ord.id}</span>

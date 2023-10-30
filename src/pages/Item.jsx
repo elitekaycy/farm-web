@@ -8,11 +8,17 @@ import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const { typeId, farmerId, id } = useParams();
+  const [contactme, setContactme] = useState(false);
   const [tab, setTab] = useState("description");
   const [product, setProduct] = useState({});
   const [farmerDetails, setFarmerDetails] = useState(null);
   const navigate = useNavigate();
   const [relatedProducts, setRelatedProducts] = useState([]);
+
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [description, setDescription] = useState("")
+
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/products/${id}`)
@@ -72,13 +78,20 @@ const ProductDetails = () => {
 
               <div>
                 <button
-                onClick={(e) => {
-                  e.preventDefault()
-                  const getCart = JSON.parse(localStorage.getItem('FARM_CART')) || []
-                  localStorage.setItem('FARM_CART', JSON.stringify([...getCart, product]))
-                  toast.success("successfully added to cart")
-                }}
-                className="p-2 text-white font-semibold hover:bg-green-400 max-w-sm w-full bg-green-500 rounded-lg">add to cart</button>
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const getCart =
+                      JSON.parse(localStorage.getItem("FARM_CART")) || [];
+                    localStorage.setItem(
+                      "FARM_CART",
+                      JSON.stringify([...getCart, product])
+                    );
+                    toast.success("successfully added to cart");
+                  }}
+                  className="p-2 text-white font-semibold hover:bg-green-400 max-w-sm w-full bg-green-500 rounded-lg"
+                >
+                  add to cart
+                </button>
               </div>
 
               <div className="bg-white rounded-md max-w-sm w-full space-y-4 shadow-sm p-4 flex flex-col ">
@@ -101,14 +114,62 @@ const ProductDetails = () => {
                   >
                     find me
                   </a>
-                  <a
-                    href="#"
+                  <button
+                    onClick={() => setContactme(!contactme)}
                     className="flex-1 font-semibold cursor-pointer bg-gray-200 text-white hover:bg-gray-300 text-center p-2 rounded-lg"
                   >
                     Contact me
-                  </a>
+                  </button>
                 </div>
               </div>
+                {contactme && (
+                <div className="max-w-md space-y-3 w-full bg-white rounded-md shadow-md p-4">
+                  <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                   placeholder="name"
+                   className="w-full bg-gray-100 rounded-sm p-3 font-semibold text-black"
+                  />
+
+                  <input
+                   value={email}
+                   onChange={(e) =>  setEmail(e.target.value)}
+                   placeholder="email"
+                   className="w-full bg-gray-100 rounded-sm p-3 font-semibold text-black"
+                  />
+
+                  <textarea 
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="enter message description"
+                  className="w-full bg-gray-100 rounded-sm p-3 font-semibold text-black"
+                  />
+
+                  <button
+                  onClick={async() => {
+                    if(email === '' || name === '' || description === '') return toast.error("cannot submit empty fields")
+
+                    await fetch(`http://localhost:3000/api/report`, {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({ id: id, productId: id, description: `${name} # ${description} # ${email}`})
+                    })
+
+                    toast.success("message sent successfully")
+
+                    setName("")
+                    setEmail("")
+                    setDescription("")
+                    
+
+                  }}
+                  className="w-full text-white font-semibold text-center p-3 cursor-pointer hover:bg-green-400 bg-green-500">
+                    submit message
+                  </button>
+
+                </div>)}
             </div>
           </div>
 

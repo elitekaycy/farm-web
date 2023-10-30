@@ -1,6 +1,39 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
-function AdminHome({ usersLength, productLength, ordersLength, recieptLength }) {
+function AdminHome() {
+
+  const [users, setUsers] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [farmers, setFarmers] = useState([]);
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    // Fetch users data
+    fetch('http://localhost:3000/api/users')
+      .then((response) => response.json())
+      .then((data) => setUsers(data))
+      .catch((error) => console.error('Error fetching users:', error));
+
+    // Fetch products data
+    fetch('http://localhost:3000/api/products')
+      .then((response) => response.json())
+      .then((data) => setProducts(data))
+      .catch((error) => console.error('Error fetching products:', error));
+
+    // Fetch farmers data
+    fetch('http://localhost:3000/api/farmers')
+      .then((response) => response.json())
+      .then((data) => setFarmers(data))
+      .catch((error) => console.error('Error fetching farmers:', error));
+
+    // Fetch orders data
+    fetch('http://localhost:3000/api/orders')
+      .then((response) => response.json())
+      .then((data) => setOrders(data))
+      .catch((error) => console.error('Error fetching orders:', error));
+  }, []);
+
+
     const Card = ({ name , len }) => {
         return (
           <div className='w-48 h-32 flex space-y-3 flex-col items-center justify-center bg-white shadow-sm p-4'>
@@ -16,12 +49,12 @@ function AdminHome({ usersLength, productLength, ordersLength, recieptLength }) 
             Overview
           </div>
             <div className='space-y-4'>
-               <Card name={"users"} len={15} />
-                <Card />
+               <Card name={"users"} len={users.length} />
+                <Card name={"products"} len={products.length}/>
             </div>
             <div className='space-y-4'>
-               <Card />
-                <Card />
+               <Card name={"farmers"} len={farmers.length} />
+                <Card name={"orders"} len={orders.length}/>
             </div>
     
     

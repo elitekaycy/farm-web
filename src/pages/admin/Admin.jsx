@@ -7,6 +7,8 @@ import TypePage from '../Type'
 import ProductPage from '../Product'
 import Orders from '../Orders'
 import CompletOrders from '../CompleteOrders'
+import UserReport from './UserReport'
+import AdminPurchase from './AdminPurchase'
 
 function Admin() {
   const [activeNav, setActiveNav] = useState("Users")
@@ -28,7 +30,7 @@ function Admin() {
       link: "/admin/orders/complete"
     },
     {
-      name: "View Purchase Reports",
+      name: "View All Reports",
       link: "/admin/purchase/reports"
     },
     {
@@ -59,10 +61,10 @@ function Admin() {
 
   return (
     <div className='w-screen h-full min-h-screen flex flex-row bg-gray-100'>
-      <div className='h-full min-h-screen flex flex-col justify-between max-w-xs w-full bg-green-600 p-4'>
+      <div className="h-screen w-1/5 flex flex-col justify-between bg-green-600 p-4 fixed top-0 left-0 overflow-y-auto">
 
         <div>
-        <div className='text-white font-bold text-lg text-center tracking-tight p-4'>
+        <div className="text-white font-bold text-lg text-center tracking-tight p-4">
           Admin Panel
         </div>
 
@@ -104,7 +106,7 @@ function Admin() {
        </button>
       </div>
 
-      <div className='w-full flex flex-1 p-4'>
+      <div  className="w-4/5 p-4 ml-52 sm:ml-72 xl:ml-80">
        <Routes>
          <Route path='/' element={<AdminHome />} exact/>
          <Route path='/users' element={<AdminUsers />} exact/>
@@ -113,6 +115,8 @@ function Admin() {
         <Route path='/product' element={<ProductPage />} exact/>
         <Route path="/orders" element={<Orders />} exact />
         <Route path="/orders/complete" element={<CompletOrders />} exact />
+        <Route path="/reports/user" element={<UserReport />} exact />
+        <Route path="/purchase/reports" element={<AdminPurchase />} exact />
        </Routes>
       </div>
 

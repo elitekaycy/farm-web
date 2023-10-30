@@ -52,6 +52,7 @@ function Cart() {
             const data = await response.json();
             console.log("orders created:", data);
             localStorage.setItem('FARM_CART', JSON.stringify([]))
+            setCartItems([])
             toast.success("placed orders successfully")
           } else {
               toast.error(String("error placing orders"))
